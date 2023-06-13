@@ -3,10 +3,11 @@ import bodyParser from "body-parser";
 import mongoose from "mongoose";
 import connectDB from "./dbConnection/dbConn.js";
 import Item from "./models/schema-todolist-DB.js";
+import "dotenv/config";
 
 const app = express();
 
-const port = 27017;
+const port = process.env.PORT || 3000;
 
 //Connection to MongoDB calling the connection function in /dbConn.js
 connectDB();
@@ -60,7 +61,7 @@ app.post("/delete", (req, res) => {
 
 mongoose.connection.once("open", () => {
   console.log("Connected to MongoDB.");
-  app.listen(3000, function () {
+  app.listen(port, function () {
     console.log(`Server running on port ${port}`);
-  }); //Local
+  });
 });
