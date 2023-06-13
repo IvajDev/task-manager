@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>todolist</title>
+    <link
+      rel="stylesheet"
+      href="/css/styles.css" />
+  </head>
+  <body>
+    <div
+      class="box"
+      id="heading">
+      <h1><%= dayOfWeek %></h1>
+    </div>
+    <div class="box">
+      <!-- <% for(let i=0; i<dateArr.length; i++) { %>
+        <div class="item">
+          <input type="checkbox">
+      <p><%= dateArr[i].name %></p>
+      </div>
+      <% } %> -->
+
+      <% dateArr.forEach( (doc) => { %>
+      <form
+        action="/delete"
+        method="post">
+        <div class="item">
+          <input
+            name="checkbox"
+            type="checkbox"
+            value="<%= doc._id %>"
+            onchange="this.form.submit()" />
+          <p><%= doc.name %></p>
+        </div>
+      </form>
+      <% }); %>
+
+      <form
+        method="post"
+        action="/"
+        class="item">
+        <input
+          type="text"
+          name="date0"
+          placeholder="New Item"
+          autocomplete="off"
+          required />
+        <button type="submit">+</button>
+      </form>
+    </div>
+  </body>
+</html>
